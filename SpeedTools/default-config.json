@@ -10,7 +10,7 @@
     },
     "Practice Statue Skip": "Backslash,Digit1",
     "Statue Skip Infinite Fuel": true,
-    "Statue Skip Freeze Super Nova": true,
+    "Statue Skip Freeze Supernova": true,
 
     "== Twin Flight ==": {
       "type": "separator"
@@ -58,7 +58,7 @@
     "Custom 1 Start Time": 0,
     "Custom 1 Spacesuit": false,
     "Custom 1 Infinite Fuel": false,
-    "Custom 1 Freeze Super Nova": false,
+    "Custom 1 Freeze Supernova": false,
     "Custom 1 Teleport Target Body": {
       "type": "selector",
       "value": "GiantsDeep",
@@ -111,7 +111,7 @@
     "Custom 2 Start Time": 0,
     "Custom 2 Spacesuit": false,
     "Custom 2 Infinite Fuel": false,
-    "Custom 2 Freeze Super Nova": false,
+    "Custom 2 Freeze Supernova": false,
     "Custom 2 Teleport Target Body": {
       "type": "selector",
       "value": "GiantsDeep",
@@ -164,7 +164,7 @@
     "Custom 3 Start Time": 0,
     "Custom 3 Spacesuit": false,
     "Custom 3 Infinite Fuel": false,
-    "Custom 3 Freeze Super Nova": false,
+    "Custom 3 Freeze Supernova": false,
     "Custom 3 Teleport Target Body": {
       "type": "selector",
       "value": "GiantsDeep",
