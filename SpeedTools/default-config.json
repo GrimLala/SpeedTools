@@ -10,7 +10,7 @@
     },
     "Practice Statue Skip": "Backslash,Digit1",
     "Statue Skip Infinite Fuel": true,
-    "Statue Skip Freeze Super Nova": true,
+    "Statue Skip Freeze Supernova": true,
 
     "== Twin Flight ==": {
       "type": "separator"
