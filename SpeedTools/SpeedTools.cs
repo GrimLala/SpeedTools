@@ -30,7 +30,6 @@ namespace SpeedTools
 
     public class SpeedTools : ModBehaviour
     {
-        private string version = "0.1.0";
         private ScreenPrompt speedtoolsTagger = new ScreenPrompt("");
         private ScreenPrompt speedtoolsTimer = new ScreenPrompt("");
         private ScreenPrompt speedtoolsFuel = new ScreenPrompt("");

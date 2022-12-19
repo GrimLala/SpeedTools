@@ -50,11 +50,11 @@ This state places the player inside the Timber Hearth Observatory, near the entr
 
 This state mimics sleeping for 6:45 so that the player can practice flying to the Hourglass Twins to obtain the warp core.
 
-Sleep is a mechanic that increases `Time.timeScale`, the scale at which time passes in the game. We increase this as much as the Unity engine allows so that the player does not have to wait through a slower sleep cycle to practice this flight path. The rate at which the game carries out physics computations is core-bound, so there is a limit to how quickly time can pass that depends on a user's system specs, but speeding up time this way is certainly faster than sleeping.
+Sleep is a mechanic that increases `Time.timeScale`, the scale at which time passes in the game. We increase this value so that the player does not have to wait through a slower sleep cycle to practice this flight path. The rate at which the game carries out physics computations is core-bound, so there is a limit to how quickly time can pass that depends on a user's system specs, but speeding up time this way is typically faster than sleeping.
 
-Going to sleep at the campfire takes about 5 seconds, so we actually need to speed up time until 6:50, or 410 seconds. This time can be adjusted in the settings, and the loop timer can be used to help choose a desired time.
+It takes about 5 seconds to fall asleep at the campfire, so we actually need to speed up time until 6:50, or 410 seconds. This time can be adjusted in the settings, and the loop timer can be used to help choose a desired time.
 
-The loop timer must be active for this practice state to work. This means that the Nomai statue cutscene must be triggered before this practice state can be called in a new expedition. When continuing an existing expedition, this state can be called at any point before the set time has passed, but not after.
+The loop timer must be active for this practice state to work. This means that the Nomai statue cutscene must be triggered before this practice state can be called in a new expedition. When continuing an existing expedition, this state can be called at any point before the start time has passed, but not after.
 
 ### Bramble Entry
 
@@ -62,7 +62,7 @@ The loop timer must be active for this practice state to work. This means that t
 
 This state mimics warping out of the Ash Twin Project by 8:08 (488 seconds) to practice flying to Dark Bramble within an ideal time window. The player starts on the Ash Twin warp pad with a warp core in hand. We cannot mimic wedging the ship under the bridge between the towers, but the ship will be nearby for quick retrieval.
 
-This practice state can be called at any point before the set time has passed, but not after.
+Just like the previous state, the loop timer must be active for this practice state to be called; and it may be called at any point before the start time has passed, but not after.
 
 ### Vessel Activation
 
