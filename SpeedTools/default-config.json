@@ -1,0 +1,213 @@
+{
+  "enabled": true,
+  "settings": {
+    "Toggle Infinite Fuel": "RightBracket,Digit1",
+    "Toggle Tree Locator": "RightBracket,Digit6",
+    "Toggle Speedup": "RightBracket,Digit0",
+
+    "== Statue Skip ==": {
+      "type": "separator"
+    },
+    "Practice Statue Skip": "Backslash,Digit1",
+    "Statue Skip Infinite Fuel": true,
+    "Statue Skip Freeze Super Nova": true,
+
+    "== Twin Flight ==": {
+      "type": "separator"
+    },
+    "Practice Twin Flight": "Backslash,Digit2",
+    "Practice Twin Flight Start Time": 410,
+    "Twin Flight Spacesuit": false,
+
+    "== Bramble Entry ==": {
+      "type": "separator"
+    },
+    "Practice Bramble Entry": "Backslash,Digit3",
+    "Practice Bramble Entry Start Time": 488,
+
+    "== Vessel Activation ==": {
+      "type": "separator"
+    },
+    "Practice Vessel Activation": "Backslash,Digit4",
+    "Vessel Activation Infinite Fuel": true,
+    "Vessel Activation Display Coordinates": true,
+
+    "== Vessel Clip ==": {
+      "type": "separator"
+    },
+    "Practice Vessel Clip": "Backslash,Digit5",
+    "Vessel Clip Infinite Fuel": true,
+    "Vessel Clip Teleport Target Position": "180.76, 15.07, -25.04",
+
+    "== Instrument Hunt ==": {
+      "type": "separator"
+    },
+    "Practice Instrument Hunt": "Backslash,Digit6",
+    "Instrument Hunt Infinite Fuel": true,
+    "Instrument Hunt Tree Locator": true,
+
+    "== Custom States ==": {
+      "type": "separator"
+    },
+    "Log Custom State Info": "Backslash,RightBracket",
+
+    "== Custom Practice State 1 ==": {
+      "type": "separator"
+    },
+    "Practice Custom 1": "Backslash,Digit8",
+    "Custom 1 Start Time": 0,
+    "Custom 1 Spacesuit": false,
+    "Custom 1 Infinite Fuel": false,
+    "Custom 1 Freeze Super Nova": false,
+    "Custom 1 Teleport Target Body": {
+      "type": "selector",
+      "value": "GiantsDeep",
+      "options": [
+        "Probe",
+        "ModelShip",
+        "Sun",
+        "SunStation",
+        "HourglassTwins",
+        "AshTwin",
+        "EmberTwin",
+        "TimberHearth",
+        "TimberHearthProbe",
+        "Attlerock",
+        "BrittleHollow",
+        "HollowLantern",
+        "GiantsDeep",
+        "ProbeCannon",
+        "NomaiProbe",
+        "NomaiEmberTwinShuttle",
+        "NomaiBrittleHollowShuttle",
+        "DarkBramble",
+        "InnerDarkBramble_Hub",
+        "InnerDarkBramble_EscapePod",
+        "InnerDarkBramble_Nest",
+        "InnerDarkBramble_Feldspar",
+        "InnerDarkBramble_Gutter",
+        "InnerDarkBramble_Vessel",
+        "InnerDarkBramble_Maze",
+        "InnerDarkBramble_SmallNest",
+        "InnerDarkBramble_Secret",
+        "Interloper",
+        "WhiteHole",
+        "WhiteHoleStation",
+        "Stranger",
+        "DreamWorld",
+        "QuantumMoon",
+        "SatiliteBacker",
+        "SatiliteMapping",
+        "EyeOfTheUniverse",
+        "EyeOfTheUniverse_Vessel"
+      ]
+    },
+    "Custom 1 Teleport Target Postion": "102.1, 10.2, 50.3",
+
+    "== Custom Practice State 2 ==": {
+      "type": "separator"
+    },
+    "Practice Custom 2": "Backslash,Digit9",
+    "Custom 2 Start Time": 0,
+    "Custom 2 Spacesuit": false,
+    "Custom 2 Infinite Fuel": false,
+    "Custom 2 Freeze Super Nova": false,
+    "Custom 2 Teleport Target Body": {
+      "type": "selector",
+      "value": "GiantsDeep",
+      "options": [
+        "Probe",
+        "ModelShip",
+        "Sun",
+        "SunStation",
+        "HourglassTwins",
+        "AshTwin",
+        "EmberTwin",
+        "TimberHearth",
+        "TimberHearthProbe",
+        "Attlerock",
+        "BrittleHollow",
+        "HollowLantern",
+        "GiantsDeep",
+        "ProbeCannon",
+        "NomaiProbe",
+        "NomaiEmberTwinShuttle",
+        "NomaiBrittleHollowShuttle",
+        "DarkBramble",
+        "InnerDarkBramble_Hub",
+        "InnerDarkBramble_EscapePod",
+        "InnerDarkBramble_Nest",
+        "InnerDarkBramble_Feldspar",
+        "InnerDarkBramble_Gutter",
+        "InnerDarkBramble_Vessel",
+        "InnerDarkBramble_Maze",
+        "InnerDarkBramble_SmallNest",
+        "InnerDarkBramble_Secret",
+        "Interloper",
+        "WhiteHole",
+        "WhiteHoleStation",
+        "Stranger",
+        "DreamWorld",
+        "QuantumMoon",
+        "SatiliteBacker",
+        "SatiliteMapping",
+        "EyeOfTheUniverse",
+        "EyeOfTheUniverse_Vessel"
+      ]
+    },
+    "Custom 2 Teleport Target Postion": "0.0, 0.0, 0.0",
+
+    "== Custom Practice State 3 ==": {
+      "type": "separator"
+    },
+    "Practice Custom 3": "Backslash,Digit0",
+    "Custom 3 Start Time": 0,
+    "Custom 3 Spacesuit": false,
+    "Custom 3 Infinite Fuel": false,
+    "Custom 3 Freeze Super Nova": false,
+    "Custom 3 Teleport Target Body": {
+      "type": "selector",
+      "value": "GiantsDeep",
+      "options": [
+        "Probe",
+        "ModelShip",
+        "Sun",
+        "SunStation",
+        "HourglassTwins",
+        "AshTwin",
+        "EmberTwin",
+        "TimberHearth",
+        "TimberHearthProbe",
+        "Attlerock",
+        "BrittleHollow",
+        "HollowLantern",
+        "GiantsDeep",
+        "ProbeCannon",
+        "NomaiProbe",
+        "NomaiEmberTwinShuttle",
+        "NomaiBrittleHollowShuttle",
+        "DarkBramble",
+        "InnerDarkBramble_Hub",
+        "InnerDarkBramble_EscapePod",
+        "InnerDarkBramble_Nest",
+        "InnerDarkBramble_Feldspar",
+        "InnerDarkBramble_Gutter",
+        "InnerDarkBramble_Vessel",
+        "InnerDarkBramble_Maze",
+        "InnerDarkBramble_SmallNest",
+        "InnerDarkBramble_Secret",
+        "Interloper",
+        "WhiteHole",
+        "WhiteHoleStation",
+        "Stranger",
+        "DreamWorld",
+        "QuantumMoon",
+        "SatiliteBacker",
+        "SatiliteMapping",
+        "EyeOfTheUniverse",
+        "EyeOfTheUniverse_Vessel"
+      ]
+    },
+    "Custom 3 Teleport Target Postion": "0.0, 0.0, 0.0"
+  }
+}
