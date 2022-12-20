@@ -15,7 +15,7 @@ We owe a debt of inspiration to the very useful [Cheats Mod](https://github.com/
 ## Installation
 SpeedTools and its dependencies can be easily installed with the [Outer Wilds Mod Manager](https://outerwildsmods.com/mod-manager/):
 1. Download the Mod Manager from the [Outer Wilds Mods](https://outerwildsmods.com/) website.
-2. Use the Mod Manager to install `OWML`and `PacificEngine's Common Resources`.
+2. Use the Mod Manager to install `OWML` and `PacificEngine's Common Resources`.
 3. Use the Mod Manager to install `SpeedTools` by `GrimLala`.
 
 ## Loop Timer
@@ -34,11 +34,11 @@ The timer sometimes persists on the title screen. We decided not to remove it, b
 `]` + `1` | Toggle Infinite Fuel
 `]` + `6` | Toggle Endgame Tree Locator
 `]` + `0` | Toggle Speedup (cancel with `ESC`)
-`\` + `]` | Output Current State to OWML Console
+`\` + `]` | Output Current Location to OWML Console
 
-Speedup is a fairly uncontrolled feature. The toggle is responsive on the title screen, but not so much in the actual game due to the computational load of all the physics calculations being carried out. We recommend spamming `ESC` to cancel speedup if you use it.
+Speedup is a fairly uncontrolled feature. The toggle is responsive on the title screen, but not so much in the actual game due to the computational load of all the physics calculations being carried out. We recommend spamming `ESC` to cancel speedup if you use it. If you want to retain the ability to move and interact with the game, mods with less aggressive time acceleration exist (e.g., `Alter Time` by `spacepiano`).
 
-## Practice State
+## Practice States
 
 ### Statue Skip
 
@@ -94,7 +94,7 @@ You can make the player clone appear more quickly if you can find a cluster of t
 
 If there are specific sections of a run you would like to practice that are not covered by the above practice states, there is a way to create your own custom states. In the mod config menu you will find three custom states that you can configure to suit your needs.
 
-*Note: Custom states do not currently support scene transitions, so some teleport destinations may not be accessible (e.g., the Eye of the Universe).*
+*Note: Custom states do not currently support scene transitions, so some teleport destinations may not be accessible (e.g., the Eye of the Universe). Stranger and Dreamworld destinations are not currently supported.*
 
 ### Custom Practice State Settings
 
@@ -118,4 +118,4 @@ Custom states aren't very useful if you don't know when and where you want the p
 
 Outer Wilds was not developed with the intention of supporting some of the disjointed warps and scene transitions that we've coded into our practice states. If you encounter an issue like getting stuck in a black void or immediately dying from collision, just try again. If the issue persists, try giving the game an extra second to load before you press the practice state button.
 
-We haven't tested every scenario, so if you are having repeated issues, let us know! You can discuss the problem here on GitHub, or contact us through the Outer Wilds Modding community on Discord: `grimsalad#0004` & `LordLala#0052`.
+We haven't tested every scenario, so if you are having repeated issues, let us know! You can discuss the problem here on GitHub, or contact us through the [Outer Wilds Modding](https://discord.gg/9vE5aHxcF9) community on Discord: `grimsalad#0004` & `LordLala#0052`.
