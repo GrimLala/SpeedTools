@@ -1,3 +1,5 @@
+![This is an image showing a bright white galaxy with a golden orb along one of the spiral arms, and the title SpeedTools in a glowing orange font.](title.png)
+
 # SpeedTools by GrimLala
 
 SpeedTools is a mod that was conceived to make speedrunning Outer Wilds more accessible.
