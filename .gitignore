@@ -398,3 +398,4 @@ FodyWeavers.xsd
 *.sln.iml
 /.gitattributes
 /.gitignore
+/SpeedTools/SpeedTools.csproj
