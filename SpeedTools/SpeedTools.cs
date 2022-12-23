@@ -105,8 +105,8 @@ namespace SpeedTools
         public override void Configure(IModConfig config)
         {
             inputs.Clear();
-            inputs.addInput(config, SpeedToolOptions.Practice_Statue_Skip, "Backslash,Digit1");
-            inputs.addInput(config, SpeedToolOptions.Practice_Twin_Flight, "Backslash,Digit2");
+            inputs.addInput(config, SpeedToolOptions.Practice_Statue_Skip, "Backslash,Digit2");  // 1 and 4 should be avoided for anything involving the scout launcher as this switches to photo mode
+            inputs.addInput(config, SpeedToolOptions.Practice_Twin_Flight, "Backslash,Digit1");
             inputs.addInput(config, SpeedToolOptions.Practice_Bramble_Entry, "Backslash,Digit3");
             inputs.addInput(config, SpeedToolOptions.Practice_Vessel_Activation, "Backslash,Digit4");
             inputs.addInput(config, SpeedToolOptions.Practice_Vessel_Clip, "Backslash,Digit5");
@@ -115,7 +115,7 @@ namespace SpeedTools
             inputs.addInput(config, SpeedToolOptions.Practice_Custom_2, "Backslash,Digit9");
             inputs.addInput(config, SpeedToolOptions.Practice_Custom_3, "Backslash,Digit0");
 
-            inputs.addInput(config, SpeedToolOptions.Toggle_Infinite_Fuel, "RightBracket,Digit1");
+            inputs.addInput(config, SpeedToolOptions.Toggle_Infinite_Fuel, "RightBracket,Digit2");
             inputs.addInput(config, SpeedToolOptions.Toggle_Speedup, "RightBracket,Digit0");
             inputs.addInput(config, SpeedToolOptions.Toggle_Tree_Locator, "RightBracket,Digit6");
 

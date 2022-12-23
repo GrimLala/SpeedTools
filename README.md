@@ -16,7 +16,7 @@ We owe a debt of inspiration to the very useful [Cheats Mod](https://github.com/
 SpeedTools and its dependencies can be easily installed with the [Outer Wilds Mod Manager](https://outerwildsmods.com/mod-manager/):
 1. Download the Mod Manager from the [Outer Wilds Mods](https://outerwildsmods.com/) website.
 2. Use the Mod Manager to install `OWML` and `PacificEngine's Common Resources`.
-3. Use the Mod Manager to install `SpeedTools` by `GrimLala`.
+3. Use the Mod Manager to install `SpeedTools` by `grimsalad & LordLala`.
 
 ## Loop Timer
 Once the Nomai statue has been activated in a new expedition, a *loop timer* will appear in the bottom left corner of the screen:
@@ -25,30 +25,35 @@ Once the Nomai statue has been activated in a new expedition, a *loop timer* wil
 
 This has been included to help the player understand where they are in the supernova cycle. The timer can also be used to determine custom start times for practice states.
 
-The timer sometimes persists on the title screen. We decided not to remove it, because this screen also experiences a 22-minute death of the universe.
+The timer sometimes persists on the title screen. We decided not to remove it because this screen also experiences a 22-minute death of the universe.
 
 ## Helpful Toggles and Keys
 
 | Key   | Description |
 | :---: | --- |
-`]` + `1` | Toggle Infinite Fuel
+`]` + `2` | Toggle Infinite Fuel
 `]` + `6` | Toggle Endgame Tree Locator
 `]` + `0` | Toggle Speedup (cancel with `ESC`)
 `\` + `]` | Output Current Location to OWML Console
 
 Speedup is a fairly uncontrolled feature. The toggle is responsive on the title screen, but not so much in the actual game due to the computational load of all the physics calculations being carried out. We recommend spamming `ESC` to cancel speedup if you use it. If you want to retain the ability to move and interact with the game, mods with less aggressive time acceleration exist (e.g., `Alter Time` by `spacepiano`).
 
+## Changing default keybinds
+Default keybinds have been chosen not to interact with Cheats Mod, which is commonly used in speedrunning, nor with the game itself. These keybinds can be customized in the mod menu, or by directly editing the file `%AppData%\OuterWildsModManager\OWML\Mods\GrimLala.SpeedTools\config.json`.
+
+The input must be written with commas separating the key code names, e.g. `Backslash,Numpad0` or `A,B,C`. These names are based on key locations for a standard American keyboard layout. The full list can be found in [the Unity documentation](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/api/UnityEngine.InputSystem.Key.html).
+
 ## Practice States
 
 ### Statue Skip
 
-**Default key:** `\` + `1`
+**Default key:** `\` + `2`
 
 This state places the player inside the Timber Hearth Observatory, near the entrance so that the Nomai statue skip can be practiced. If the mask cutscene has already been triggered, then Hornfels is removed from the scene so as not to obstruct practice. Infinite fuel is enabled by default so that the skip movement may be practiced over and over.
 
 ### Twin Flight
 
-**Default key:** `\` + `2`
+**Default key:** `\` + `1`
 
 This state mimics sleeping for 6:45 so that the player can practice flying to the Hourglass Twins to obtain the warp core.
 

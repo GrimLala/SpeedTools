@@ -1,21 +1,21 @@
 {
   "enabled": true,
   "settings": {
-    "Toggle Infinite Fuel": "RightBracket,Digit1",
+    "Toggle Infinite Fuel": "RightBracket,Digit2",
     "Toggle Tree Locator": "RightBracket,Digit6",
     "Toggle Speedup": "RightBracket,Digit0",
 
     "== Statue Skip ==": {
       "type": "separator"
     },
-    "Practice Statue Skip": "Backslash,Digit1",
+    "Practice Statue Skip": "Backslash,Digit2",
     "Statue Skip Infinite Fuel": true,
     "Statue Skip Freeze Supernova": true,
 
     "== Twin Flight ==": {
       "type": "separator"
     },
-    "Practice Twin Flight": "Backslash,Digit2",
+    "Practice Twin Flight": "Backslash,Digit1",
     "Practice Twin Flight Start Time": 410,
     "Twin Flight Spacesuit": false,
 
