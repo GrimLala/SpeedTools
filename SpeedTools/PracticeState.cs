@@ -382,7 +382,9 @@ namespace SpeedTools
             var parent = Position.getBody(HeavenlyBodies.AshTwin);
             if (Locator.GetShipBody() && parent && !PlayerState.IsInsideShip())
             {
-                Teleportation.teleportObjectTo(Locator.GetShipBody(), parent, new Vector3(-9.268302f, -1.562688f, -128.2221f), Vector3.zero, Vector3.zero, Vector3.zero, Quaternion.identity);
+                var bridge = GameObject.Find("Structure_HT_TT_Bridge").transform;
+                var shipAbsPos = bridge.TransformPoint(new Vector3(-6.96f, -0.2f, -126.73f));
+                Teleportation.teleportObjectTo(Locator.GetShipBody(), shipAbsPos, parent.GetPointVelocity(shipAbsPos), Vector3.zero, parent.GetAcceleration(), bridge.rotation * new Quaternion(-0.5f, 0.5f, -0.5f, 0.5f));
             }
         }
     }
