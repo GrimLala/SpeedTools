@@ -7,8 +7,6 @@ using PacificEngine.OW_CommonResources.Game.Config;
 using PacificEngine.OW_CommonResources.Game.Player;
 using PacificEngine.OW_CommonResources.Game.Resource;
 using System;
-using Epic.OnlineServices.Presence;
-using static RumbleManager;
 
 namespace SpeedTools
 {
@@ -380,25 +378,9 @@ namespace SpeedTools
             var bridge = GameObject.Find("Structure_HT_TT_Bridge").transform;
             var ship = Locator.GetShipBody().transform;
             var shipRelPos = bridge.InverseTransformPoint(ship.position);
-
-            // Information for player position and rotation
-            var test2 = GameObject.Find("RingWorld_Body").transform;
-            var test1 = Locator.GetPlayerBody().transform;
-            var playerAbsoluteState = PositionState.fromCurrentState(Locator.GetPlayerBody());
-            var parent = Position.getClosetInfluence(playerAbsoluteState.position, Position.getAstros(), new HeavenlyBody[0]);
-            var playerRelativeState = RelativeState.getRelativeMovement(parent[0].Item1, Locator.GetPlayerBody());
-
             string output =
-                "== Player Debug Info == \n"
-                + "Parent body: " + HeavenlyBodyHelper.heavenlyBodyToHumanText(parent[0].Item1) + "\n"
-                + "Position:" + formatVector(playerRelativeState?.position ?? Vector3.zero) + "\n"
-                + playerRelativeState?.rotation + "\n"
-                + test1.rotation + "\n"
-                + test2.rotation + "\n"
-                + "Player rotation:" + (Quaternion.Inverse(test2.rotation) * test1.rotation) + "\n"
-                + "== Bramble Entry Debug Info == \n"
-                + "Ship position:" + shipRelPos + "\n"
-                + "Ship rotation:" + (Quaternion.Inverse(bridge.rotation) * ship.rotation);
+                "Position:" + shipRelPos + "\n"
+                + "Rotation:" + (Quaternion.Inverse(bridge.rotation) * ship.rotation);
 
             ModHelper.Console.WriteLine(output, MessageType.Success);
         }
