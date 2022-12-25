@@ -479,10 +479,10 @@ namespace SpeedTools
             // This volume triggers oxygen to load
             var volumeO2 = GameObject.Find("FluidOxygenVolume").GetComponent<OWTriggerVolume>();
 
-            // This volume is weird; I think it has something to do with the Stranger reference frame?
-            // When it's on, you do not rotate with the Stranger and instead experience the Stranger rotating around you (unwanted behaviour).
-            // When it's not on and you warp from the Stranger interior to somewhere else, you tend to slam into walls as if you're stuck in the rotating reference frame.
-            // This might need to be applied when warping out??
+            // TODO: ForceVolume seems to be the artificial gravity (centrifugal force) volume for the Stranger interior.
+            // For some reason the player remains in the rotational frame when you teleport to another location --
+            // Turns out this is an issue any time we add the player to volumes by hand. Gravity will remain whatever direction/strength it was.
+            // We should resolve this at some point, for now it's just quirky I guess
             //var volume4 = GameObject.Find("ForceVolume").GetComponent<OWTriggerVolume>();
 
             // TODO: There's gotta be a better way than just adding ourselves to volumes, right?

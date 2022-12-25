@@ -105,6 +105,8 @@ The teleport position can be specified in the config menu. As long as the start 
 
 We haven't currently removed the cloaking field that renders the static outer area of the Stranger invisible. If you want to interact with this area, the mod `Visible Stranger` by `xen` will make that a lot easier.
 
+*Note: If you teleport to other locations outside the Stranger's interior, you won't really be able to move because a centrifugal force will still be acting on you.*
+
 ## Custom Practice States
 
 If there are specific sections of a run you would like to practice that are not covered by the above practice states, there is a way to create your own custom states. In the mod config menu you will find three custom states that you can configure to suit your needs.

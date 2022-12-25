@@ -46,10 +46,10 @@
     "Instrument Hunt Infinite Fuel": true,
     "Instrument Hunt Tree Locator": true,
 
-    "== Stranger ==": {
+    "== The Stranger ==": {
       "type": "separator"
     },
-    "Practice Stranger": "Backslash,7",
+    "Practice Stranger": "Backslash,Digit7",
     "Stranger Start Time": 0,
     "Stranger Teleport Target Position": "49.54, -77.79, -293.29",
     "Stranger Infinite Fuel": false,
