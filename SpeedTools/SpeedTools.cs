@@ -7,6 +7,8 @@ using PacificEngine.OW_CommonResources.Game.Config;
 using PacificEngine.OW_CommonResources.Game.Player;
 using PacificEngine.OW_CommonResources.Game.Resource;
 using System;
+using Epic.OnlineServices.Presence;
+using static RumbleManager;
 
 namespace SpeedTools
 {
@@ -18,6 +20,7 @@ namespace SpeedTools
         Practice_Vessel_Activation,
         Practice_Vessel_Clip,
         Practice_Instrument_Hunt,
+        Practice_Stranger,
         Practice_Custom_1,
         Practice_Custom_2,
         Practice_Custom_3,
@@ -110,7 +113,8 @@ namespace SpeedTools
             inputs.addInput(config, SpeedToolOptions.Practice_Bramble_Entry, "Backslash,Digit3");
             inputs.addInput(config, SpeedToolOptions.Practice_Vessel_Activation, "Backslash,Digit4");
             inputs.addInput(config, SpeedToolOptions.Practice_Vessel_Clip, "Backslash,Digit5");
-            inputs.addInput(config, SpeedToolOptions.Practice_Instrument_Hunt, "Backslash,Digit5");
+            inputs.addInput(config, SpeedToolOptions.Practice_Instrument_Hunt, "Backslash,Digit6");
+            inputs.addInput(config, SpeedToolOptions.Practice_Stranger, "Backslash,7");
             inputs.addInput(config, SpeedToolOptions.Practice_Custom_1, "Backslash,Digit8");
             inputs.addInput(config, SpeedToolOptions.Practice_Custom_2, "Backslash,Digit9");
             inputs.addInput(config, SpeedToolOptions.Practice_Custom_3, "Backslash,Digit0");
@@ -146,13 +150,18 @@ namespace SpeedTools
             PracticeStateInstrumentHunt.Instance.setInfiniteFuel(ConfigHelper.getConfigOrDefault<bool>(config, "Instrument Hunt Infinite Fuel", false));
             PracticeStateInstrumentHunt.Instance.setTreeLocator(ConfigHelper.getConfigOrDefault<bool>(config, "Instrument Hunt Tree Locator", false));
 
+            // Stranger
+            PracticeStateStranger.Instance.setWaitTime(ConfigHelper.getConfigOrDefault<int>(config, "Stranger Start Time", 0));
+            PracticeStateStranger.Instance.setInfiniteFuel(ConfigHelper.getConfigOrDefault<bool>(config, "Stranger Infinite Fuel", false));
+            PracticeStateStranger.Instance.setTeleportPosition(ConfigHelper.getConfigOrDefault<string>(config, "Stranger Teleport Target Position", "49.54, -77.79, -293.29"));
+
             // Custom 1
             PracticeStateCustom1.Instance.setWaitTime(ConfigHelper.getConfigOrDefault<int>(config, "Custom 1 Start Time", 0));
             PracticeStateCustom1.Instance.setSpaceSuit(ConfigHelper.getConfigOrDefault<bool>(config, "Custom 1 Spacesuit", false));
             PracticeStateCustom1.Instance.setInfiniteFuel(ConfigHelper.getConfigOrDefault<bool>(config, "Custom 1 Infinite Fuel", false));
             PracticeStateCustom1.Instance.setFreezeSuperNova(ConfigHelper.getConfigOrDefault<bool>(config, "Custom 1 Freeze Supernova", false));
             PracticeStateCustom1.Instance.setTeleportBody(ConfigHelper.getConfigOrDefault<string>(config, "Custom 1 Teleport Target Body", null));
-            PracticeStateCustom1.Instance.setTeleportPosition(ConfigHelper.getConfigOrDefault<string>(config, "Custom 1 Teleport Target Postion", null));
+            PracticeStateCustom1.Instance.setTeleportPosition(ConfigHelper.getConfigOrDefault<string>(config, "Custom 1 Teleport Target Position", null));
 
             // Custom 2
             PracticeStateCustom2.Instance.setWaitTime(ConfigHelper.getConfigOrDefault<int>(config, "Custom 2 Start Time", 0));
@@ -160,7 +169,7 @@ namespace SpeedTools
             PracticeStateCustom2.Instance.setInfiniteFuel(ConfigHelper.getConfigOrDefault<bool>(config, "Custom 2 Infinite Fuel", false));
             PracticeStateCustom2.Instance.setFreezeSuperNova(ConfigHelper.getConfigOrDefault<bool>(config, "Custom 2 Freeze Supernova", false));
             PracticeStateCustom2.Instance.setTeleportBody(ConfigHelper.getConfigOrDefault<string>(config, "Custom 2 Teleport Target Body", null));
-            PracticeStateCustom2.Instance.setTeleportPosition(ConfigHelper.getConfigOrDefault<string>(config, "Custom 2 Teleport Target Postion", null));
+            PracticeStateCustom2.Instance.setTeleportPosition(ConfigHelper.getConfigOrDefault<string>(config, "Custom 2 Teleport Target Position", null));
 
             // Custom 3
             PracticeStateCustom3.Instance.setWaitTime(ConfigHelper.getConfigOrDefault<int>(config, "Custom 3 Start Time", 0));
@@ -168,7 +177,7 @@ namespace SpeedTools
             PracticeStateCustom3.Instance.setInfiniteFuel(ConfigHelper.getConfigOrDefault<bool>(config, "Custom 3 Infinite Fuel", false));
             PracticeStateCustom3.Instance.setFreezeSuperNova(ConfigHelper.getConfigOrDefault<bool>(config, "Custom 3 Freeze Supernova", false));
             PracticeStateCustom3.Instance.setTeleportBody(ConfigHelper.getConfigOrDefault<string>(config, "Custom 3 Teleport Target Body", null));
-            PracticeStateCustom3.Instance.setTeleportPosition(ConfigHelper.getConfigOrDefault<string>(config, "Custom 3 Teleport Target Postion", null));
+            PracticeStateCustom3.Instance.setTeleportPosition(ConfigHelper.getConfigOrDefault<string>(config, "Custom 3 Teleport Target Position", null));
 
         }
 
@@ -227,6 +236,9 @@ namespace SpeedTools
                         break;
                     case SpeedToolOptions.Practice_Instrument_Hunt:
                         practice_InstrumentHunt();
+                        break;
+                    case SpeedToolOptions.Practice_Stranger:
+                        practice_Stranger();
                         break;
                     case SpeedToolOptions.Practice_Custom_1:
                         practice_Custom1();
@@ -318,6 +330,11 @@ namespace SpeedTools
             loadPractice(PracticeStateInstrumentHunt.Instance);
         }
 
+        private void practice_Stranger()
+        {
+            loadPractice(PracticeStateStranger.Instance);
+        }
+
         private void practice_Custom1()
         {
             loadPractice(PracticeStateCustom1.Instance);
@@ -363,9 +380,25 @@ namespace SpeedTools
             var bridge = GameObject.Find("Structure_HT_TT_Bridge").transform;
             var ship = Locator.GetShipBody().transform;
             var shipRelPos = bridge.InverseTransformPoint(ship.position);
+
+            // Information for player position and rotation
+            var test2 = GameObject.Find("RingWorld_Body").transform;
+            var test1 = Locator.GetPlayerBody().transform;
+            var playerAbsoluteState = PositionState.fromCurrentState(Locator.GetPlayerBody());
+            var parent = Position.getClosetInfluence(playerAbsoluteState.position, Position.getAstros(), new HeavenlyBody[0]);
+            var playerRelativeState = RelativeState.getRelativeMovement(parent[0].Item1, Locator.GetPlayerBody());
+
             string output =
-                "Position:" + shipRelPos + "\n"
-                + "Rotation:" + (Quaternion.Inverse(bridge.rotation) * ship.rotation);
+                "== Player Debug Info == \n"
+                + "Parent body: " + HeavenlyBodyHelper.heavenlyBodyToHumanText(parent[0].Item1) + "\n"
+                + "Position:" + formatVector(playerRelativeState?.position ?? Vector3.zero) + "\n"
+                + playerRelativeState?.rotation + "\n"
+                + test1.rotation + "\n"
+                + test2.rotation + "\n"
+                + "Player rotation:" + (Quaternion.Inverse(test2.rotation) * test1.rotation) + "\n"
+                + "== Bramble Entry Debug Info == \n"
+                + "Ship position:" + shipRelPos + "\n"
+                + "Ship rotation:" + (Quaternion.Inverse(bridge.rotation) * ship.rotation);
 
             ModHelper.Console.WriteLine(output, MessageType.Success);
         }

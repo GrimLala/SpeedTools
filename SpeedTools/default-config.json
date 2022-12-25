@@ -46,6 +46,14 @@
     "Instrument Hunt Infinite Fuel": true,
     "Instrument Hunt Tree Locator": true,
 
+    "== Stranger ==": {
+      "type": "separator"
+    },
+    "Practice Stranger": "Backslash,7",
+    "Stranger Start Time": 0,
+    "Stranger Teleport Target Position": "49.54, -77.79, -293.29",
+    "Stranger Infinite Fuel": false,
+
     "== Custom States ==": {
       "type": "separator"
     },
@@ -100,7 +108,7 @@
         "EyeOfTheUniverse_Vessel"
       ]
     },
-    "Custom 1 Teleport Target Postion": "102.1, 10.2, 50.3",
+    "Custom 1 Teleport Target Position": "102.1, 10.2, 50.3",
 
     "== Custom Practice State 2 ==": {
       "type": "separator"
@@ -151,7 +159,7 @@
         "EyeOfTheUniverse_Vessel"
       ]
     },
-    "Custom 2 Teleport Target Postion": "0.0, 0.0, 0.0",
+    "Custom 2 Teleport Target Position": "0.0, 0.0, 0.0",
 
     "== Custom Practice State 3 ==": {
       "type": "separator"
@@ -202,6 +210,6 @@
         "EyeOfTheUniverse_Vessel"
       ]
     },
-    "Custom 3 Teleport Target Postion": "0.0, 0.0, 0.0"
+    "Custom 3 Teleport Target Position": "0.0, 0.0, 0.0"
   }
 }

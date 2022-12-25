@@ -67,7 +67,7 @@ The loop timer must be active for this practice state to work. This means that t
 
 **Default key:** `\` + `3`
 
-This state mimics warping out of the Ash Twin Project by 8:08 (488 seconds) to practice flying to Dark Bramble within an ideal time window. The player starts on the Ash Twin warp pad with a warp core in hand. We cannot mimic wedging the ship under the bridge between the towers, but the ship will be nearby for quick retrieval.
+This state mimics warping out of the Ash Twin Project by 8:08 (488 seconds) to practice flying to Dark Bramble within an ideal time window. The player starts on the Ash Twin warp pad with a warp core in hand, and the player's ship is wedged under the bridge outside.
 
 Just like the previous state, the loop timer must be active for this practice state to be called; and it may be called at any point before the start time has passed, but not after.
 
@@ -94,6 +94,16 @@ This state places the player inside the Vessel next to the navigation console wi
 This state places the player just above the loading zone for the Quantum Observatory so the final segment of the speedrun can be practiced.
 
 You can make the player clone appear more quickly if you can find a cluster of three large trees, in a process described in [thestrangepie's Any% guide](https://www.speedrun.com/outer_wilds/guide/6oj7z). We have placed a bright orb (toggled with `]` + `6`) in the middle of this cluster to help new runners learn its location more easily.
+
+### DLC: Inside the Stranger
+
+**Default key:** `\` + `7`
+
+This state teleports the player directly inside the Stranger without them having to fly there and pass through the airlock.
+
+The teleport position can be specified in the config menu. As long as the start time is set to `0`, the state can be called multiple times without restarting the loop, so you can teleport to multiple locations in the same loop. The position has to be inside the Stranger's interior, though; the Stranger and Dreamworld locations require a bit of extra effort to load correctly, and we're not sure yet what kind of states might be useful, so this is just an experimental feature for now.
+
+We haven't currently removed the cloaking field that renders the static outer area of the Stranger invisible. If you want to interact with this area, the mod `Visible Stranger` by `xen` will make that a lot easier.
 
 ## Custom Practice States
 

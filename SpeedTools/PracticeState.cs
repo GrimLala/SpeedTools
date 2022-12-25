@@ -430,6 +430,82 @@ namespace SpeedTools
     }
 
     /**
+     * Practice state for Stranger (experimental)
+     */
+    class PracticeStateStranger : PracticeState<PracticeStateStranger>
+    {
+        private PracticeStateStranger()
+        {
+            this.spaceSuit = true;
+            this.teleportBody = HeavenlyBodies.Stranger;
+            this.teleportPosition = new Vector3(49.54f, -77.79f, -293.29f);
+        }
+
+        public override void postWait()
+        {
+            base.postWait();
+
+            /**
+             * For now, this teleport works okay.
+             * 
+             * You can dream etc. and most things seem to be working normally.
+             * 
+             * One issue: the "static" ringworld remains cloaked - everything technically exists and can be interacted with but it's hard because invisible.
+             * "Visible Stranger" mod fixes the outside being invisible. I don't know if we want to decloak it as well or just ignore it.
+             */
+
+            // I was testing if teleporting to the front dock first would uncloak the Stranger, but this didn't work.
+            // Maybe not enough loading time but probably not an elegant solution anyway.
+            /*
+            var parent = Position.getBody(HeavenlyBodies.Stranger);
+            if (Locator.GetPlayerBody() && parent)
+            {
+                // First teleport to front dock so the front area loads properly
+                //Teleportation.teleportPlayerTo(parent, new Vector3(45.5f, -169f, -290f), Vector3.zero, Vector3.zero, Vector3.zero, Quaternion.identity);
+
+                // Now teleport to desired area within the Stranger
+                Teleportation.teleportPlayerTo(parent, teleportPosition, Vector3.zero, Vector3.zero, Vector3.zero, Quaternion.identity);
+            }
+            */
+
+            //Locator.GetRingWorldController()._playerInsideRingWorld = true;
+
+            // We don't want this one, this is for outside
+            //var volume1 = GameObject.Find("SectorTrigger_Ringworld").GetComponent<OWTriggerVolume>();
+
+            // This volume triggers ring interior to load
+            var volumeLoad = GameObject.Find("RingInteriorSectorTriggerVolume").GetComponent<OWTriggerVolume>();
+
+            // This volume triggers oxygen to load
+            var volumeO2 = GameObject.Find("FluidOxygenVolume").GetComponent<OWTriggerVolume>();
+
+            // This volume is weird; I think it has something to do with the Stranger reference frame?
+            // When it's on, you do not rotate with the Stranger and instead experience the Stranger rotating around you (unwanted behaviour).
+            // When it's not on and you warp from the Stranger interior to somewhere else, you tend to slam into walls as if you're stuck in the rotating reference frame.
+            // This might need to be applied when warping out??
+            //var volume4 = GameObject.Find("ForceVolume").GetComponent<OWTriggerVolume>();
+
+            // TODO: There's gotta be a better way than just adding ourselves to volumes, right?
+            // There are multiple EntrywayTriggers that basically do this for us:
+            // e.g. GameObject.Find("LightSide_InnerAirlock").GetComponent<EntrywayTrigger>();
+            // but I don't know how they're used, unfortunately. Maybe we could experiment
+
+            // Add player to trigger volume to load area
+            volumeLoad.AddObjectToVolume(GameObject.Find("PlayerDetector"));
+            //volumeLoad.AddObjectToVolume(GameObject.Find("CameraDetector"));
+
+            // Add player to oxygen volume
+            volumeO2.AddObjectToVolume(GameObject.Find("PlayerDetector"));
+            //volumeO2.AddObjectToVolume(GameObject.Find("CameraDetector"));
+        }
+
+        public override void postSceneLoad()
+        {
+
+        }
+    }
+
+    /**
      * Custom Practice states. No override logic. All settings controled via menu
      */
     class PracticeStateCustom1 : PracticeState<PracticeStateCustom1> { }
