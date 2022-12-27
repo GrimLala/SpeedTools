@@ -7,6 +7,7 @@ using PacificEngine.OW_CommonResources.Game.Config;
 using PacificEngine.OW_CommonResources.Game.Player;
 using PacificEngine.OW_CommonResources.Game.Resource;
 using System;
+using System.EnterpriseServices.CompensatingResourceManager;
 
 namespace SpeedTools
 {
@@ -36,6 +37,7 @@ namespace SpeedTools
         private ScreenPrompt speedtoolsTimer = new ScreenPrompt("");
         private ScreenPrompt speedtoolsFuel = new ScreenPrompt("");
         bool speedtoolsEnabled = true;
+        public bool DLCEnabled = false;
 
         void OnGUI()
         {
@@ -186,9 +188,18 @@ namespace SpeedTools
             // Use Start() instead.
         }
 
+        public bool Check()
+        {
+            return EntitlementsManager.IsDlcOwned() != EntitlementsManager.AsyncOwnershipStatus.NotReady;
+        }
+
         private void Start()
         {
             version = ModHelper.Manifest.Version;
+
+            ModHelper.Events.Unity.RunWhen(Check, () => {
+                DLCEnabled = EntitlementsManager.IsDlcOwned() == EntitlementsManager.AsyncOwnershipStatus.Owned ? true : false; ;
+            });
 
             // Example of accessing game code.
             LoadManager.OnCompleteSceneLoad += (scene, loadScene) =>
@@ -330,6 +341,12 @@ namespace SpeedTools
 
         private void practice_Stranger()
         {
+            if (!DLCEnabled)
+            {
+                ModHelper.Console.WriteLine("Cannot access the Stranger without the DLC", MessageType.Message);
+                return;
+            }
+
             loadPractice(PracticeStateStranger.Instance);
         }
 
