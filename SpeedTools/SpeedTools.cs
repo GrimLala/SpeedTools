@@ -7,7 +7,6 @@ using PacificEngine.OW_CommonResources.Game.Config;
 using PacificEngine.OW_CommonResources.Game.Player;
 using PacificEngine.OW_CommonResources.Game.Resource;
 using System;
-using System.EnterpriseServices.CompensatingResourceManager;
 
 namespace SpeedTools
 {
@@ -185,7 +184,14 @@ namespace SpeedTools
         {
             // You won't be able to access OWML's mod helper in Awake.
             // So you probably don't want to do anything here.
-            // Use Start() instead.
+            // Use Start() instead.           
+        }
+
+        void onAwake()
+        {
+            // These don't get cleared on death, so force it
+            Player.hasUnlimitedFuel = false;
+            SuperNova.freeze = false;
         }
 
         public bool Check()
@@ -200,6 +206,8 @@ namespace SpeedTools
             ModHelper.Events.Unity.RunWhen(Check, () => {
                 DLCEnabled = EntitlementsManager.IsDlcOwned() == EntitlementsManager.AsyncOwnershipStatus.Owned ? true : false; ;
             });
+
+            ModHelper.Events.Player.OnPlayerAwake += (player) => onAwake();
 
             // Example of accessing game code.
             LoadManager.OnCompleteSceneLoad += (scene, loadScene) =>
