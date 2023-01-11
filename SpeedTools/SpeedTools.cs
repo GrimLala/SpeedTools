@@ -518,6 +518,10 @@ namespace SpeedTools
 
                     // The controller has code that deactivates the object. Kill it dead
                     Destroy(treeLocator.GetComponent<DistantSunController>());
+                    // Kill the collision as well
+                    Destroy(treeLocator.GetComponentInChildren<SphereCollider>());
+
+                    treeLocator.AddComponent(typeof(TreeLocatorRemover));
 
                     treeLocator.name = "TreeTriangleLocator";
                     treeLocator.transform.localPosition = new Vector3(-55f, 0f, 0f);
