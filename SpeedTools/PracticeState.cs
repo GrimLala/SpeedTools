@@ -226,6 +226,12 @@ namespace SpeedTools
      */
     class PracticeStateTwinFlight : PracticeState<PracticeStateTwinFlight>
     {
+        private PracticeStateTwinFlight()
+        {
+            this.teleportBody = HeavenlyBodies.TimberHearth;
+            this.teleportPosition = new Vector3(19.9f, -44.19f, 185.65f);
+        }
+
         public override void preWait()
         {
             base.preWait();
