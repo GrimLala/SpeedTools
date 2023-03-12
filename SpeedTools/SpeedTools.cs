@@ -15,6 +15,7 @@ namespace SpeedTools
         Practice_Statue_Skip,
         Practice_Twin_Flight,
         Practice_Bramble_Entry,
+        Practice_Bramble_Navigation,
         Practice_Vessel_Activation,
         Practice_Vessel_Clip,
         Practice_Instrument_Hunt,
@@ -110,6 +111,7 @@ namespace SpeedTools
             inputs.addInput(config, SpeedToolOptions.Practice_Statue_Skip, "Backslash,Digit2");  // 1 and 4 should be avoided for anything involving the scout launcher as this switches to photo mode
             inputs.addInput(config, SpeedToolOptions.Practice_Twin_Flight, "Backslash,Digit1");
             inputs.addInput(config, SpeedToolOptions.Practice_Bramble_Entry, "Backslash,Digit3");
+            inputs.addInput(config, SpeedToolOptions.Practice_Bramble_Navigation, "Backslash,A");  // we're running out of numbers aaaa TODO: cross reference with cheatsmod to see what interactions there might be
             inputs.addInput(config, SpeedToolOptions.Practice_Vessel_Activation, "Backslash,Digit4");
             inputs.addInput(config, SpeedToolOptions.Practice_Vessel_Clip, "Backslash,Digit5");
             inputs.addInput(config, SpeedToolOptions.Practice_Instrument_Hunt, "Backslash,Digit6");
@@ -245,6 +247,9 @@ namespace SpeedTools
                     case SpeedToolOptions.Practice_Bramble_Entry:
                         practice_BrambleEntry();
                         break;
+                    case SpeedToolOptions.Practice_Bramble_Navigation:
+                        practice_BrambleNavigation();
+                        break;
                     case SpeedToolOptions.Practice_Vessel_Activation:
                         practice_VesselActivation();
                         break;
@@ -340,6 +345,11 @@ namespace SpeedTools
         private void practice_BrambleEntry()
         {
             loadPractice(PracticeStateBrambleEntry.Instance);
+        }
+
+        private void practice_BrambleNavigation()
+        {
+            loadPractice(PracticeStateBrambleNavigation.Instance);
         }
 
         private void practice_InstrumentHunt()

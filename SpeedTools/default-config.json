@@ -25,6 +25,11 @@
     "Practice Bramble Entry": "Backslash,Digit3",
     "Practice Bramble Entry Start Time": 488,
 
+    "== Bramble Navigation ==": {
+      "type": "separator"
+    },
+    "Practice Bramble Navigation": "Backslash,A",
+
     "== Vessel Activation ==": {
       "type": "separator"
     },

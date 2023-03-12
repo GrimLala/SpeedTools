@@ -224,16 +224,15 @@ namespace SpeedTools
         {
             Teleportation.teleportPlayerToShip();
 
+            HatchController hatchController = GameObject.FindObjectOfType<HatchController>();
+            hatchController.CloseHatch();
+            ShipTractorBeamSwitch tractorbeamSwitch = GameObject.FindObjectOfType<ShipTractorBeamSwitch>();
+            tractorbeamSwitch.DeactivateTractorBeam();
+            
+            // TODO: still need to add player to ship gravity volume and maybe trigger some other things. debugging later
+
             if(seated) {
                 OWTriggerVolume shipOxygenVolume = null;
-
-                foreach (OWTriggerVolume triggerVolume in GameObject.FindObjectsOfType<OWTriggerVolume>())
-                {
-                    if(triggerVolume.name == "ShipAtmosphereVolume")
-                    {
-                        shipOxygenVolume = triggerVolume;
-                    }
-                }
 
                 ShipCockpitController cockpitController = GameObject.FindObjectOfType<ShipCockpitController>();
                 if (cockpitController != null)
@@ -450,8 +449,6 @@ namespace SpeedTools
                 var shipAbsPos = bridge.TransformPoint(new Vector3(-6.96f, -0.2f, -126.73f));
                 Teleportation.teleportObjectTo(Locator.GetShipBody(), shipAbsPos, parent.GetPointVelocity(shipAbsPos), Vector3.zero, parent.GetAcceleration(), bridge.rotation * new Quaternion(-0.5f, 0.5f, -0.5f, 0.5f));
             }*/
-
-            
 
             placePlayerInShip(true);
         }
