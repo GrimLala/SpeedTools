@@ -219,6 +219,29 @@ namespace SpeedTools
         {
             Possession.pickUpWarpCore(WarpCoreType.Vessel);
         }
+
+        protected void placePlayerInShip(bool seated)
+        {
+            Teleportation.teleportPlayerToShip();
+
+            if(seated) {
+                OWTriggerVolume shipOxygenVolume = null;
+
+                foreach (OWTriggerVolume triggerVolume in GameObject.FindObjectsOfType<OWTriggerVolume>())
+                {
+                    if(triggerVolume.name == "ShipAtmosphereVolume")
+                    {
+                        shipOxygenVolume = triggerVolume;
+                    }
+                }
+
+                ShipCockpitController cockpitController = GameObject.FindObjectOfType<ShipCockpitController>();
+                if (cockpitController != null)
+                {
+                    cockpitController.OnPressInteract();
+                }
+            }
+        }
     }
 
     /**
@@ -394,6 +417,46 @@ namespace SpeedTools
             }
         }
     }
+
+    class PracticeStateBrambleNavigation : PracticeState<PracticeStateBrambleNavigation>
+    {
+        private PracticeStateBrambleNavigation()
+        {
+            this.spaceSuit = true;
+            //this.teleportBody = HeavenlyBodies.AshTwin;
+            //this.teleportPosition = new Vector3(0f, 13.9f, -123.8f);
+        }
+
+        public override void preWait()
+        {
+            base.preWait();
+
+            // Make sure the supernova loop is on for this state in case it got turned off
+            toggleSuperNova(false);
+        }
+
+        public override void postWait()
+        {
+            base.postWait();
+
+            giveWarpCore();
+
+            // Teleport player's ship to the bridge outside
+            /*
+            var parent = Position.getBody(HeavenlyBodies.AshTwin);
+            if (Locator.GetShipBody() && parent && !PlayerState.IsInsideShip())
+            {
+                var bridge = GameObject.Find("Structure_HT_TT_Bridge").transform;
+                var shipAbsPos = bridge.TransformPoint(new Vector3(-6.96f, -0.2f, -126.73f));
+                Teleportation.teleportObjectTo(Locator.GetShipBody(), shipAbsPos, parent.GetPointVelocity(shipAbsPos), Vector3.zero, parent.GetAcceleration(), bridge.rotation * new Quaternion(-0.5f, 0.5f, -0.5f, 0.5f));
+            }*/
+
+            
+
+            placePlayerInShip(true);
+        }
+    }
+
 
     /**
      * Practice state for final concert. Starts right as the player drops into the Observatory
