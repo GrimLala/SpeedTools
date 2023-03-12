@@ -71,6 +71,12 @@ This state mimics warping out of the Ash Twin Project by 8:08 (488 seconds) to p
 
 Just like the previous state, the loop timer must be active for this practice state to be called; and it may be called at any point before the start time has passed, but not after.
 
+### Bramble Navigation
+
+**Default key:** `\` + `A`
+
+BECOME FELDSPAR
+
 ### Vessel Activation
 
 **Default key:** `\` + `4`
