@@ -6,6 +6,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using OWML.ModHelper;
+using OWML.Common;
 
 namespace SpeedTools
 {
@@ -230,7 +232,7 @@ namespace SpeedTools
             tractorbeamSwitch.DeactivateTractorBeam();
 
             // TODO: still need to add player to ship gravity volume and maybe trigger some other things. debugging later
-            
+
             // This adds the player to the gravity volume, but the player doesn't get removed on exiting. Need to re-enter and exit again for that to happen
             ShipDirectionalForceVolume[] gravityVolumes = GameObject.FindObjectsOfType<ShipDirectionalForceVolume>();
             foreach(ShipDirectionalForceVolume volume in gravityVolumes)
@@ -242,8 +244,8 @@ namespace SpeedTools
                     break;
                 }
             }
-            
-            if(seated) {
+
+            if (seated) {
                 OWTriggerVolume shipOxygenVolume = null;
 
                 ShipCockpitController cockpitController = GameObject.FindObjectOfType<ShipCockpitController>();
@@ -461,6 +463,28 @@ namespace SpeedTools
                 var shipAbsPos = bridge.TransformPoint(new Vector3(-6.96f, -0.2f, -126.73f));
                 Teleportation.teleportObjectTo(Locator.GetShipBody(), shipAbsPos, parent.GetPointVelocity(shipAbsPos), Vector3.zero, parent.GetAcceleration(), bridge.rotation * new Quaternion(-0.5f, 0.5f, -0.5f, 0.5f));
             }*/
+
+            // Teleport player's ship to inside Bramble hub, speeding into the nest seed
+            var parent = Position.getBody(HeavenlyBodies.InnerDarkBramble_Hub);
+            if (Locator.GetShipBody() && parent)
+            {
+                var hub = GameObject.Find("SpawnPoint_Ship_HubDimension").transform;
+                var shipAbsPos = hub.TransformPoint(new Vector3(-17.0f, 103.8f, 356.5f));
+                Teleportation.teleportObjectTo(Locator.GetShipBody(), shipAbsPos, new Vector3(10f, -250.0f, -50.0f), Vector3.zero, parent.GetAcceleration(), hub.rotation * new Quaternion(-0.2f, 0.5f, -0.8f, 0.1f));
+            }
+            // TODO: maybe fix rotation based on how people typically enter the node
+            // TODO: reset ship status (fully repaired) on state reset
+            // TODO: reset all fishies to their original status (position, speed, rotation, + sleepin) on state reset
+
+            // also TODO: add section to config for position, velocity, etc.
+            //              this is not very user friendly right now; I had to use the position debug menu
+            //              from cheats mod to figure out a roughly appropriate velocity vector here...
+
+            // also also TODO: add a console output for position and rotation to make this mildly more user friendly?
+            //              currently I'm using a random object inside bramble ("SpawnPoint_Ship_HubDimension") to
+            //              find and set fixed coordinates and rotation inside. not sure if we need to do this since bramble
+            //              itself is a unique space with no velocity or acceleration. could be useful if someone wants to start
+            //              the ship just outside bramble
 
             placePlayerInShip(true);
         }
