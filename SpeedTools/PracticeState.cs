@@ -228,9 +228,21 @@ namespace SpeedTools
             hatchController.CloseHatch();
             ShipTractorBeamSwitch tractorbeamSwitch = GameObject.FindObjectOfType<ShipTractorBeamSwitch>();
             tractorbeamSwitch.DeactivateTractorBeam();
-            
-            // TODO: still need to add player to ship gravity volume and maybe trigger some other things. debugging later
 
+            // TODO: still need to add player to ship gravity volume and maybe trigger some other things. debugging later
+            
+            // This adds the player to the gravity volume, but the player doesn't get removed on exiting. Need to re-enter and exit again for that to happen
+            ShipDirectionalForceVolume[] gravityVolumes = GameObject.FindObjectsOfType<ShipDirectionalForceVolume>();
+            foreach(ShipDirectionalForceVolume volume in gravityVolumes)
+            {
+                if(volume.name == "ShipGravityVolume")
+                {
+                    volume.OnEffectVolumeEnter(GameObject.FindGameObjectWithTag("PlayerDetector"));
+                    volume.OnEffectVolumeEnter(GameObject.FindGameObjectWithTag("PlayerCameraDetector"));
+                    break;
+                }
+            }
+            
             if(seated) {
                 OWTriggerVolume shipOxygenVolume = null;
 
