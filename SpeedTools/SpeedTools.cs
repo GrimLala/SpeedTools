@@ -412,15 +412,13 @@ namespace SpeedTools
             // Current state has the ship flat on the bridge but if a different orientation is neede this will be helpful
             //var bridge = GameObject.Find("Structure_HT_TT_Bridge").transform;
             var parent = Position.getBody(HeavenlyBodies.InnerDarkBramble_Hub);
-            var ship0 = Locator.GetShipBody();
             var ship = Locator.GetShipBody().transform;
             var hub = GameObject.Find("SpawnPoint_Ship_HubDimension").transform;
             //var shipRelPos = bridge.InverseTransformPoint(ship.position);
             var shipRelPos = hub.InverseTransformPoint(ship.position);
             string output =
                 "Position:" + shipRelPos + "\n"
-                + "Rotation:" + (Quaternion.Inverse(hub.rotation) * ship.rotation) + "\n"
-                + "Ship accel: " + (ship0.GetAcceleration);
+                + "Rotation:" + (Quaternion.Inverse(hub.rotation) * ship.rotation) + "\n";
 
             ModHelper.Console.WriteLine(output, MessageType.Success);
         }

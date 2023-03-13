@@ -6,8 +6,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
-using OWML.ModHelper;
-using OWML.Common;
 
 namespace SpeedTools
 {
@@ -245,7 +243,7 @@ namespace SpeedTools
                 }
             }
 
-            if (seated) {
+            if(seated) {
                 OWTriggerVolume shipOxygenVolume = null;
 
                 ShipCockpitController cockpitController = GameObject.FindObjectOfType<ShipCockpitController>();
