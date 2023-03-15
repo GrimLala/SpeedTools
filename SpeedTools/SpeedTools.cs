@@ -7,6 +7,7 @@ using PacificEngine.OW_CommonResources.Game.Config;
 using PacificEngine.OW_CommonResources.Game.Player;
 using PacificEngine.OW_CommonResources.Game.Resource;
 using System;
+using System.Collections.Generic;
 
 namespace SpeedTools
 {
@@ -403,24 +404,52 @@ namespace SpeedTools
             ModHelper.Console.WriteLine(output, MessageType.Success);
         }
 
+
+        public HashSet<FishState> anglerfish = new HashSet<FishState>();
+
+
+        public class FishState
+        {
+            public AnglerfishController fish;
+            public Vector3 pos;
+            public Quaternion rot;
+        }
+
+
         /*
          * Debug method for outputting whatever the hell info is needed at the time
          */
         private void doDebug()
         {
-            // This provides a reliable, reproducable location and rotation for placing the ship for practicing bramble entry
-            // Current state has the ship flat on the bridge but if a different orientation is neede this will be helpful
-            //var bridge = GameObject.Find("Structure_HT_TT_Bridge").transform;
-            var parent = Position.getBody(HeavenlyBodies.InnerDarkBramble_Hub);
-            var ship = Locator.GetShipBody().transform;
-            var hub = GameObject.Find("SpawnPoint_Ship_HubDimension").transform;
-            //var shipRelPos = bridge.InverseTransformPoint(ship.position);
-            var shipRelPos = hub.InverseTransformPoint(ship.position);
-            string output =
-                "Position:" + shipRelPos + "\n"
-                + "Rotation:" + (Quaternion.Inverse(hub.rotation) * ship.rotation) + "\n";
+            GameObject fishEggs = GameObject.Find("FishEggs");
 
-            ModHelper.Console.WriteLine(output, MessageType.Success);
+
+            if (anglerfish.Count == 0) { 
+
+                foreach (AnglerfishController controller in Anglerfish.anglerfish)
+                {
+                    FishState fishState = new FishState
+                    {
+                        fish = controller,
+                        pos = controller.transform.position - fishEggs.transform.position,
+                        rot = (Quaternion.Inverse(fishEggs.transform.rotation) * controller.transform.rotation)
+                    };
+
+                    anglerfish.Add(fishState);
+                }
+
+            } else
+            {
+                foreach(FishState fishState in anglerfish)
+                {
+                    fishState.fish.transform.position = fishState.pos + fishEggs.transform.position;
+                    fishState.fish.transform.localRotation = fishEggs.transform.rotation * fishState.rot;
+                    fishState.fish.ChangeState(AnglerfishController.AnglerState.Lurking);
+                }
+            }
+
+            
+
         }
 
         /*
