@@ -189,7 +189,7 @@ namespace SpeedTools
                 foreach(string message in errorMessageList)
                 {
                     ModHelper.Console.WriteLine(message, MessageType.Warning);
-        }
+                }
             }
 
         }
@@ -206,6 +206,7 @@ namespace SpeedTools
             // These don't get cleared on death, so force it
             Player.hasUnlimitedFuel = false;
             SuperNova.freeze = false;
+
         }
 
         public bool Check()
@@ -415,51 +416,11 @@ namespace SpeedTools
             ModHelper.Console.WriteLine(output, MessageType.Success);
         }
 
-
-        public HashSet<FishState> anglerfish = new HashSet<FishState>();
-
-
-        public class FishState
-        {
-            public AnglerfishController fish;
-            public Vector3 pos;
-            public Quaternion rot;
-        }
-
-
         /*
          * Debug method for outputting whatever the hell info is needed at the time
          */
         private void doDebug()
         {
-            GameObject fishEggs = GameObject.Find("FishEggs");
-
-
-            if (anglerfish.Count == 0) { 
-
-                foreach (AnglerfishController controller in Anglerfish.anglerfish)
-                {
-                    FishState fishState = new FishState
-                    {
-                        fish = controller,
-                        pos = controller.transform.position - fishEggs.transform.position,
-                        rot = (Quaternion.Inverse(fishEggs.transform.rotation) * controller.transform.rotation)
-                    };
-
-                    anglerfish.Add(fishState);
-                }
-
-            } else
-            {
-                foreach(FishState fishState in anglerfish)
-                {
-                    fishState.fish.transform.position = fishState.pos + fishEggs.transform.position;
-                    fishState.fish.transform.localRotation = fishEggs.transform.rotation * fishState.rot;
-                    fishState.fish.ChangeState(AnglerfishController.AnglerState.Lurking);
-                }
-            }
-
-            
 
         }
 

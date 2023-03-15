@@ -2,14 +2,15 @@
 using PacificEngine.OW_CommonResources.Game.Resource;
 using PacificEngine.OW_CommonResources.Game.State;
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using Position = PacificEngine.OW_CommonResources.Game.Resource.Position;
+using System.Linq;
 
 namespace SpeedTools
 {
+
     interface IPracticeState
     {
         public float getWaitTime();
@@ -24,6 +25,62 @@ namespace SpeedTools
         public void postSceneLoad();
 
     }
+
+    class FishState
+    {
+        public Vector3 pos;
+        public Quaternion rot;
+    }
+
+    class FishStateHelper
+    {
+        public static HashSet<FishState> fishStates = new HashSet<FishState>()
+        {
+            new FishState
+            {
+                    pos = new Vector3(761.3f, 99.2f, 257.0f),
+                    rot = new Quaternion(0.6f, 0.1f, -0.2f, 0.8f)
+            },
+            new FishState
+            {
+                    pos = new Vector3(-397.8f, -153.8f, -279.4f),
+                    rot = new Quaternion(-0.1f, -0.8f, -0.1f, 0.5f)
+            },new FishState
+            {
+                    pos = new Vector3(406.4f, -3027.0f, 1979.6f),
+                    rot = new Quaternion(-0.2f, 0.9f, 0.4f, -0.3f)
+            },new FishState
+            {
+                    pos = new Vector3(666.5f, -36.2f, 48.8f),
+                    rot = new Quaternion(-0.2f, -0.8f, -0.4f, 0.3f)
+            },new FishState
+            {
+                    pos = new Vector3(25.0f, 2432.1f, 2024.3f),
+                    rot = new Quaternion(0.6f, -0.6f, 0.0f, -0.6f)
+            },new FishState
+            {
+                    pos = new Vector3(4406.0f, -411.0f, 1203.4f),
+                    rot = new Quaternion(-0.3f, -0.9f, -0.4f, -0.1f)
+            },new FishState
+            {
+                    pos = new Vector3(826.6f, 195.3f, 73.1f),
+                    rot = new Quaternion(0.0f, -0.8f, 0.5f, 0.3f)
+            },new FishState
+            {
+                    pos = new Vector3(85.6f, -193.6f, 449.9f),
+                    rot = new Quaternion(-0.2f, -0.1f, -0.9f, 0.4f)
+            },new FishState
+            {
+                    pos = new Vector3(715.7f, -86.4f, 4220.8f),
+                    rot = new Quaternion(0.3f, -0.6f, -0.3f, -0.7f)
+            },new FishState
+            {
+                    pos = new Vector3(3587.3f, 267.0f, 2057.2f),
+                    rot = new Quaternion(-0.2f, 0.4f, 0.0f, -0.9f)
+            }
+        };
+    }
+
 
     /**
      * Abstract parent class that contains all shared behavior for Practice States
@@ -48,6 +105,7 @@ namespace SpeedTools
         protected HeavenlyBody teleportBody = null;
         protected Vector3 teleportPosition = Vector3.negativeInfinity;
         protected Quaternion teleportRotation = Quaternion.identity;
+
 
         public float getWaitTime()
         {
@@ -90,6 +148,7 @@ namespace SpeedTools
 
             this.teleportBody = HeavenlyBodyHelper.lookupHeavenlyBody(bodyName);
         }
+
 
         public void setTeleportPosition(string vector, ref List<string> errorMessageList)
         {
@@ -251,6 +310,24 @@ namespace SpeedTools
                 {
                     cockpitController.OnPressInteract();
                 }
+            }
+        }
+
+        protected void resetFish()
+        {
+            GameObject fishEggs = GameObject.Find("FishEggs");
+
+            int i = 0;
+
+            foreach (AnglerfishController controller in Anglerfish.anglerfish)
+            {
+                FishState fishState = FishStateHelper.fishStates.ElementAt(i++);
+                controller.transform.position = fishState.pos + fishEggs.transform.position;
+                controller.transform.localRotation = fishEggs.transform.rotation * fishState.rot;
+                controller.ChangeState(AnglerfishController.AnglerState.Lurking);
+                OWRigidbody body = controller.GetAttachedOWRigidbody();
+                body.SetAngularVelocity(Vector3.zero);
+                body.SetVelocity(Vector3.zero);
             }
         }
     }
@@ -449,6 +526,8 @@ namespace SpeedTools
         public override void postWait()
         {
             base.postWait();
+
+            resetFish();
 
             giveWarpCore();
 
