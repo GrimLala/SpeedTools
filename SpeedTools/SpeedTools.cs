@@ -129,6 +129,8 @@ namespace SpeedTools
 
             inputs.addInput(config, SpeedToolOptions.Debug, "LeftBracket,RightBracket");
 
+            List<string> errorMessageList = new List<string>();
+
             // Statue Skip
             PracticeStateStatueSkip.Instance.setInfiniteFuel(ConfigHelper.getConfigOrDefault<bool>(config, "Statue Skip Infinite Fuel", true));
             PracticeStateStatueSkip.Instance.setFreezeSuperNova(ConfigHelper.getConfigOrDefault<bool>(config, "Statue Skip Freeze Supernova", true));
@@ -146,7 +148,7 @@ namespace SpeedTools
 
             // Vessel Clip
             PracticeStateVesselClip.Instance.setInfiniteFuel(ConfigHelper.getConfigOrDefault<bool>(config, "Vessel Clip Infinite Fuel", false));
-            PracticeStateVesselClip.Instance.setTeleportPosition(ConfigHelper.getConfigOrDefault<string>(config, "Vessel Clip Teleport Target Position", "175.44, 13.38, -19.37"));
+            PracticeStateVesselClip.Instance.setTeleportPosition(ConfigHelper.getConfigOrDefault<string>(config, "Vessel Clip Teleport Target Position", null), ref errorMessageList);
 
             // Instrument Hunt
             PracticeStateInstrumentHunt.Instance.setInfiniteFuel(ConfigHelper.getConfigOrDefault<bool>(config, "Instrument Hunt Infinite Fuel", false));
@@ -155,7 +157,7 @@ namespace SpeedTools
             // Stranger
             PracticeStateStranger.Instance.setWaitTime(ConfigHelper.getConfigOrDefault<int>(config, "Stranger Start Time", 0));
             PracticeStateStranger.Instance.setInfiniteFuel(ConfigHelper.getConfigOrDefault<bool>(config, "Stranger Infinite Fuel", false));
-            PracticeStateStranger.Instance.setTeleportPosition(ConfigHelper.getConfigOrDefault<string>(config, "Stranger Teleport Target Position", "49.54, -77.79, -293.29"));
+            PracticeStateStranger.Instance.setTeleportPosition(ConfigHelper.getConfigOrDefault<string>(config, "Stranger Teleport Target Position", null), ref errorMessageList);
 
             // Custom 1
             PracticeStateCustom1.Instance.setWaitTime(ConfigHelper.getConfigOrDefault<int>(config, "Custom 1 Start Time", 0));
@@ -163,7 +165,7 @@ namespace SpeedTools
             PracticeStateCustom1.Instance.setInfiniteFuel(ConfigHelper.getConfigOrDefault<bool>(config, "Custom 1 Infinite Fuel", false));
             PracticeStateCustom1.Instance.setFreezeSuperNova(ConfigHelper.getConfigOrDefault<bool>(config, "Custom 1 Freeze Supernova", false));
             PracticeStateCustom1.Instance.setTeleportBody(ConfigHelper.getConfigOrDefault<string>(config, "Custom 1 Teleport Target Body", null));
-            PracticeStateCustom1.Instance.setTeleportPosition(ConfigHelper.getConfigOrDefault<string>(config, "Custom 1 Teleport Target Position", null));
+            PracticeStateCustom1.Instance.setTeleportPosition(ConfigHelper.getConfigOrDefault<string>(config, "Custom 1 Teleport Target Position", null), ref errorMessageList);
 
             // Custom 2
             PracticeStateCustom2.Instance.setWaitTime(ConfigHelper.getConfigOrDefault<int>(config, "Custom 2 Start Time", 0));
@@ -171,7 +173,7 @@ namespace SpeedTools
             PracticeStateCustom2.Instance.setInfiniteFuel(ConfigHelper.getConfigOrDefault<bool>(config, "Custom 2 Infinite Fuel", false));
             PracticeStateCustom2.Instance.setFreezeSuperNova(ConfigHelper.getConfigOrDefault<bool>(config, "Custom 2 Freeze Supernova", false));
             PracticeStateCustom2.Instance.setTeleportBody(ConfigHelper.getConfigOrDefault<string>(config, "Custom 2 Teleport Target Body", null));
-            PracticeStateCustom2.Instance.setTeleportPosition(ConfigHelper.getConfigOrDefault<string>(config, "Custom 2 Teleport Target Position", null));
+            PracticeStateCustom2.Instance.setTeleportPosition(ConfigHelper.getConfigOrDefault<string>(config, "Custom 2 Teleport Target Position", null), ref errorMessageList);
 
             // Custom 3
             PracticeStateCustom3.Instance.setWaitTime(ConfigHelper.getConfigOrDefault<int>(config, "Custom 3 Start Time", 0));
@@ -179,7 +181,16 @@ namespace SpeedTools
             PracticeStateCustom3.Instance.setInfiniteFuel(ConfigHelper.getConfigOrDefault<bool>(config, "Custom 3 Infinite Fuel", false));
             PracticeStateCustom3.Instance.setFreezeSuperNova(ConfigHelper.getConfigOrDefault<bool>(config, "Custom 3 Freeze Supernova", false));
             PracticeStateCustom3.Instance.setTeleportBody(ConfigHelper.getConfigOrDefault<string>(config, "Custom 3 Teleport Target Body", null));
-            PracticeStateCustom3.Instance.setTeleportPosition(ConfigHelper.getConfigOrDefault<string>(config, "Custom 3 Teleport Target Position", null));
+            PracticeStateCustom3.Instance.setTeleportPosition(ConfigHelper.getConfigOrDefault<string>(config, "Custom 3 Teleport Target Position", null), ref errorMessageList);
+
+            if(errorMessageList.Count > 0)
+            {
+                ModHelper.Console.WriteLine("Errors encountered while configuring mod", MessageType.Error);
+                foreach(string message in errorMessageList)
+                {
+                    ModHelper.Console.WriteLine(message, MessageType.Warning);
+        }
+            }
 
         }
 

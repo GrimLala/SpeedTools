@@ -6,6 +6,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using Position = PacificEngine.OW_CommonResources.Game.Resource.Position;
 
 namespace SpeedTools
 {
@@ -90,22 +91,21 @@ namespace SpeedTools
             this.teleportBody = HeavenlyBodyHelper.lookupHeavenlyBody(bodyName);
         }
 
-        public void setTeleportPosition(string vector)
+        public void setTeleportPosition(string vector, ref List<string> errorMessageList)
         {
-            if(vector == null)
+            if(vector == null || String.IsNullOrWhiteSpace(vector))
             {
-                this.teleportPosition = Vector3.negativeInfinity;
+                this.teleportPosition = Vector3.zero;
+                errorMessageList.Add("Position vector cannot be empty");
                 return;
             }
 
             string[] parts = vector.Split(',');
 
-            if(parts.Length != 3)
+            if(parts.Length != 3 || String.IsNullOrWhiteSpace(parts[0]) || String.IsNullOrWhiteSpace(parts[1]) || String.IsNullOrWhiteSpace(parts[2]))
             {
-                // Throwing an exception breaks everything. Find a better way to handle this
-                //throw new Exception("Unable to parse position from [" + vector + "]. Should be in format [0.0, 0.0, 0.0] ");
-
-                this.teleportPosition = Vector3.negativeInfinity;
+                this.teleportPosition = Vector3.zero;
+                errorMessageList.Add("Incomplete position vector: " + vector);
                 return;
             }
 
