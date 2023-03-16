@@ -421,7 +421,16 @@ namespace SpeedTools
          */
         private void doDebug()
         {
-
+            // debugging for pos/rot within bramble -- need this info to be output for the player at some point, not just debug. but let's figure it out first
+            var parent = Position.getBody(HeavenlyBodies.InnerDarkBramble_Hub);
+            var ship = Locator.GetShipBody().transform;
+            var hub = GameObject.Find("SpawnPoint_Ship_HubDimension").transform;    // maybe pick some other object?
+            //var shipRelPos = bridge.InverseTransformPoint(ship.position);
+            var shipRelPos = hub.InverseTransformPoint(ship.position);
+            string output =
+                "Position:" + shipRelPos + "\n"
+                + "Rotation:" + (Quaternion.Inverse(hub.rotation) * ship.rotation) + "\n";
+            ModHelper.Console.WriteLine(output, MessageType.Success);
         }
 
         /*

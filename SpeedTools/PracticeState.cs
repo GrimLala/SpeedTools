@@ -300,11 +300,6 @@ namespace SpeedTools
             volumeGrav.AddObjectToVolume(GameObject.Find("PlayerDetector"));
             volumeGrav.AddObjectToVolume(GameObject.Find("CameraDetector"));
 
-            // Add player to atmosphere volume
-            var volumeSUIT = GameObject.Find("SuitPickupVolume").GetComponent<OWTriggerVolume>();
-            volumeSUIT.AddObjectToVolume(GameObject.Find("PlayerDetector"));
-            volumeSUIT.AddObjectToVolume(GameObject.Find("CameraDetector"));
-
             // Player seems to be removed from these volumes once they exit the ship, so that's good
 
             // TODO: still need to add player to ship gravity volume and maybe trigger some other things. debugging later
@@ -328,7 +323,6 @@ namespace SpeedTools
                 if (cockpitController != null)
                 {
                     cockpitController.OnPressInteract();
-                    cockpitController._playerAtFlightConsole = true;
                 }
             }
         }
