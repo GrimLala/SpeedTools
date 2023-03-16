@@ -283,13 +283,33 @@ namespace SpeedTools
         {
             Teleportation.teleportPlayerToShip();
 
+            // TODO: This works to activate oxygen if we're on TH for example and then take off, but it won't
+            // work to give oxygen if we warp into a place that doesn't have any
             HatchController hatchController = GameObject.FindObjectOfType<HatchController>();
             hatchController.CloseHatch();
             ShipTractorBeamSwitch tractorbeamSwitch = GameObject.FindObjectOfType<ShipTractorBeamSwitch>();
             tractorbeamSwitch.DeactivateTractorBeam();
 
+            // Add player to atmosphere volume
+            var volumeOx = GameObject.Find("ShipAtmosphereVolume").GetComponent<OWTriggerVolume>();
+            volumeOx.AddObjectToVolume(GameObject.Find("PlayerDetector"));
+            volumeOx.AddObjectToVolume(GameObject.Find("CameraDetector"));
+
+            // Add player to ship's gravity volume
+            var volumeGrav = GameObject.Find("ShipGravityVolume").GetComponent<OWTriggerVolume>();
+            volumeGrav.AddObjectToVolume(GameObject.Find("PlayerDetector"));
+            volumeGrav.AddObjectToVolume(GameObject.Find("CameraDetector"));
+
+            // Add player to atmosphere volume
+            var volumeSUIT = GameObject.Find("SuitPickupVolume").GetComponent<OWTriggerVolume>();
+            volumeSUIT.AddObjectToVolume(GameObject.Find("PlayerDetector"));
+            volumeSUIT.AddObjectToVolume(GameObject.Find("CameraDetector"));
+
+            // Player seems to be removed from these volumes once they exit the ship, so that's good
+
             // TODO: still need to add player to ship gravity volume and maybe trigger some other things. debugging later
 
+            /*
             // This adds the player to the gravity volume, but the player doesn't get removed on exiting. Need to re-enter and exit again for that to happen
             ShipDirectionalForceVolume[] gravityVolumes = GameObject.FindObjectsOfType<ShipDirectionalForceVolume>();
             foreach(ShipDirectionalForceVolume volume in gravityVolumes)
@@ -301,14 +321,14 @@ namespace SpeedTools
                     break;
                 }
             }
+            */
 
-            if(seated) {
-                OWTriggerVolume shipOxygenVolume = null;
-
+            if (seated) {
                 ShipCockpitController cockpitController = GameObject.FindObjectOfType<ShipCockpitController>();
                 if (cockpitController != null)
                 {
                     cockpitController.OnPressInteract();
+                    cockpitController._playerAtFlightConsole = true;
                 }
             }
         }

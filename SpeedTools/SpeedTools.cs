@@ -116,7 +116,7 @@ namespace SpeedTools
             inputs.addInput(config, SpeedToolOptions.Practice_Vessel_Activation, "Backslash,Digit4");
             inputs.addInput(config, SpeedToolOptions.Practice_Vessel_Clip, "Backslash,Digit5");
             inputs.addInput(config, SpeedToolOptions.Practice_Instrument_Hunt, "Backslash,Digit6");
-            inputs.addInput(config, SpeedToolOptions.Practice_Stranger, "Backslash,7");
+            inputs.addInput(config, SpeedToolOptions.Practice_Stranger, "Backslash,Digit7");
             inputs.addInput(config, SpeedToolOptions.Practice_Custom_1, "Backslash,Digit8");
             inputs.addInput(config, SpeedToolOptions.Practice_Custom_2, "Backslash,Digit9");
             inputs.addInput(config, SpeedToolOptions.Practice_Custom_3, "Backslash,Digit0");
