@@ -48,8 +48,8 @@
       "type": "separator"
     },
     "Practice Instrument Hunt": "Backslash,Digit6",
-    "Instrument Hunt Infinite Fuel": true,
-    "Instrument Hunt Tree Locator": true,
+    "Instrument Hunt Infinite Fuel": false,
+    "Instrument Hunt Tree Locator": false,
 
     "== The Stranger ==": {
       "type": "separator"
