@@ -105,6 +105,7 @@ namespace SpeedTools
         protected HeavenlyBody teleportBody = null;
         protected Vector3 teleportPosition = Vector3.negativeInfinity;
         protected Quaternion teleportRotation = Quaternion.identity;
+        protected Vector3 teleportVelocity = Vector3.negativeInfinity;
 
 
         public float getWaitTime()
@@ -175,11 +176,37 @@ namespace SpeedTools
             teleportPosition = new Vector3(x, y, z);
         }
 
-        public void setTeleportRotation(string quaternion)
+        public void setTeleportVelocity(string vector, ref List<string> errorMessageList)
+        {
+            if (vector == null || String.IsNullOrWhiteSpace(vector))
+            {
+                this.teleportVelocity = Vector3.zero;
+                errorMessageList.Add("Velocity vector cannot be empty");
+                return;
+            }
+
+            string[] parts = vector.Split(',');
+
+            if (parts.Length != 3 || String.IsNullOrWhiteSpace(parts[0]) || String.IsNullOrWhiteSpace(parts[1]) || String.IsNullOrWhiteSpace(parts[2]))
+            {
+                this.teleportVelocity = Vector3.zero;
+                errorMessageList.Add("Incomplete velocity vector: " + vector);
+                return;
+            }
+
+            float x = float.Parse(parts[0].Trim());
+            float y = float.Parse(parts[1].Trim());
+            float z = float.Parse(parts[2].Trim());
+
+            teleportVelocity = new Vector3(x, y, z);
+        }
+
+        public void setTeleportRotation(string quaternion, ref List<string> errorMessageList)
         {
             if (quaternion == null)
             {
                 this.teleportRotation = Quaternion.identity;
+                errorMessageList.Add("Rotation quaternion cannot be empty");
                 return;
             }
 
@@ -191,6 +218,7 @@ namespace SpeedTools
                 //throw new Exception("Unable to parse position from [" + vector + "]. Should be in format [0.0, 0.0, 0.0] ");
 
                 this.teleportRotation = Quaternion.identity;
+                errorMessageList.Add("Incomplete rotation quaternion: " + quaternion);
                 return;
             }
 
@@ -318,7 +346,8 @@ namespace SpeedTools
             }
             */
 
-            if (seated) {
+            if (seated)
+            {
                 ShipCockpitController cockpitController = GameObject.FindObjectOfType<ShipCockpitController>();
                 if (cockpitController != null)
                 {
@@ -525,8 +554,9 @@ namespace SpeedTools
         private PracticeStateBrambleNavigation()
         {
             this.spaceSuit = true;
-            //this.teleportBody = HeavenlyBodies.AshTwin;
-            //this.teleportPosition = new Vector3(0f, 13.9f, -123.8f);
+            this.teleportPosition = new Vector3(-97.9f, 397.9f, 459.3f);
+            this.teleportRotation = new Quaternion(0.3f, -0.7f, 0.6f, 0.0f);
+            this.teleportVelocity = new Vector3(-50f, -150.0f, -50.0f);
         }
 
         public override void preWait()
@@ -560,8 +590,8 @@ namespace SpeedTools
             if (Locator.GetShipBody() && parent)
             {
                 var hub = GameObject.Find("SpawnPoint_Ship_HubDimension").transform;
-                var shipAbsPos = hub.TransformPoint(new Vector3(-17.0f, 103.8f, 356.5f));
-                Teleportation.teleportObjectTo(Locator.GetShipBody(), shipAbsPos, new Vector3(10f, -250.0f, -50.0f), Vector3.zero, parent.GetAcceleration(), hub.rotation * new Quaternion(-0.2f, 0.5f, -0.8f, 0.1f));
+                var shipAbsPos = hub.TransformPoint(teleportPosition);
+                Teleportation.teleportObjectTo(Locator.GetShipBody(), shipAbsPos, teleportVelocity, Vector3.zero, parent.GetAcceleration(), hub.rotation * teleportRotation);
             }
             // TODO: maybe fix rotation based on how people typically enter the node
             // TODO: reset ship status (fully repaired) on state reset
