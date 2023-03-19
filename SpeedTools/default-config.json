@@ -29,6 +29,7 @@
       "type": "separator"
     },
     "Practice Bramble Navigation": "Backslash,A",
+    "Bramble Disable Angler Death":  true,
     "Bramble Teleport Target Position": "-98.1, 398.6, 459.5",
     "Bramble Teleport Target Rotation": "0.3, -0.7, 0.6, 0.0",
     "Bramble Teleport Target Velocity": "-40.0, -50.0, -30.0",

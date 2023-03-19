@@ -143,6 +143,7 @@ namespace SpeedTools
             PracticeStateBrambleEntry.Instance.setWaitTime(ConfigHelper.getConfigOrDefault<int>(config, "Practice Bramble Entry Start Time", 488));
 
             // Bramble Navigation
+            PracticeStateBrambleNavigation.Instance.setDisableAnglerDeath(ConfigHelper.getConfigOrDefault<bool>(config, "Bramble Disable Angler Death", true));
             PracticeStateBrambleNavigation.Instance.setTeleportPosition(ConfigHelper.getConfigOrDefault<string>(config, "Bramble Teleport Target Position", null), ref errorMessageList);
             PracticeStateBrambleNavigation.Instance.setTeleportRotation(ConfigHelper.getConfigOrDefault<string>(config, "Bramble Teleport Target Rotation", null), ref errorMessageList);
             PracticeStateBrambleNavigation.Instance.setTeleportVelocity(ConfigHelper.getConfigOrDefault<string>(config, "Bramble Teleport Target Velocity", null), ref errorMessageList);

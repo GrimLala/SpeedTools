@@ -101,6 +101,7 @@ namespace SpeedTools
         protected bool eyeCoordinates = false;
         protected bool launchCodes = false;
         protected bool treeLocator = false;
+        protected bool disableAnglerDeath = false;
 
         protected HeavenlyBody teleportBody = null;
         protected Vector3 teleportPosition = Vector3.negativeInfinity;
@@ -236,6 +237,11 @@ namespace SpeedTools
         public void setTreeLocator(bool treeLocatorEnabled)
         {
             this.treeLocator = treeLocatorEnabled;
+        }
+
+        public void setDisableAnglerDeath(bool disableAnglerDeath)
+        {
+            this.disableAnglerDeath = disableAnglerDeath;
         }
 
         /*
@@ -375,6 +381,21 @@ namespace SpeedTools
                 OWRigidbody body = controller.GetAttachedOWRigidbody();
                 body.SetAngularVelocity(Vector3.zero);
                 body.SetVelocity(Vector3.zero);
+            }
+        }
+
+        protected void toggleAnglerDeath(bool noDeath)
+        {
+            foreach (AnglerfishController controller in Anglerfish.anglerfish)
+            {
+                if(noDeath)
+                {
+                    controller.gameObject.transform.Find("JawsOfDestruction").gameObject.SetActive(false);
+                } else
+                {
+                    controller.gameObject.transform.Find("JawsOfDestruction").gameObject.SetActive(true);
+    }
+                
             }
         }
     }
@@ -561,6 +582,7 @@ namespace SpeedTools
             this.teleportPosition = new Vector3(-97.9f, 397.9f, 459.3f);
             this.teleportRotation = new Quaternion(0.3f, -0.7f, 0.6f, 0.0f);
             this.teleportVelocity = new Vector3(-50f, -150.0f, -50.0f);
+            this.disableAnglerDeath = true;
         }
 
         public override void preWait()
@@ -575,7 +597,11 @@ namespace SpeedTools
         {
             base.postWait();
 
-            resetFish();
+            this.resetFish();
+
+            this.toggleAnglerDeath(this.disableAnglerDeath);
+
+            Ship.repair();
 
             giveWarpCore();
 
