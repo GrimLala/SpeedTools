@@ -364,6 +364,10 @@ namespace SpeedTools
 
             foreach (AnglerfishController controller in Anglerfish.anglerfish)
             {
+
+                controller.gameObject.transform.FindChild("JawsOfDestruction").gameObject.SetActive(false);
+
+
                 FishState fishState = FishStateHelper.fishStates.ElementAt(i++);
                 controller.transform.position = fishState.pos + fishEggs.transform.position;
                 controller.transform.localRotation = fishEggs.transform.rotation * fishState.rot;
