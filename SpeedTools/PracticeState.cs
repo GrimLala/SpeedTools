@@ -20,6 +20,7 @@ namespace SpeedTools
         public void setFreezeSuperNova(bool activeSuperNova);
         public void setEyeCoordinates(bool eyeCoordinates);
         public void setTreeLocator(bool treeLocatorEnabled);
+        public void setDisableAnglerDeath(bool disableAnglerDeath);
         public void preWait();
         public void postWait();
         public void postSceneLoad();
