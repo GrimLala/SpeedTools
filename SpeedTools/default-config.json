@@ -24,15 +24,8 @@
     },
     "Practice Bramble Entry": "Backslash,Digit3",
     "Practice Bramble Entry Start Time": 488,
-
-    "== Bramble Navigation ==": {
-      "type": "separator"
-    },
     "Practice Bramble Navigation": "Backslash,A",
-    "Bramble Disable Angler Death":  true,
-    "Bramble Teleport Target Position": "-98.1, 398.6, 459.5",
-    "Bramble Teleport Target Rotation": "0.3, -0.7, 0.6, 0.0",
-    "Bramble Teleport Target Velocity": "-40.0, -50.0, -30.0",
+    "Bramble Disable Angler Death": true,
 
     "== Vessel Activation ==": {
       "type": "separator"
@@ -46,7 +39,6 @@
     },
     "Practice Vessel Clip": "Backslash,Digit5",
     "Vessel Clip Infinite Fuel": true,
-    "Vessel Clip Teleport Target Position": "180.76, 15.07, -25.04",
 
     "== Instrument Hunt ==": {
       "type": "separator"
@@ -60,10 +52,37 @@
     },
     "Practice Stranger": "Backslash,Digit7",
     "Stranger Start Time": 0,
-    "Stranger Teleport Target Position": "49.54, -77.79, -293.29",
     "Stranger Infinite Fuel": false,
 
-    "== Custom States ==": {
+    " ": {
+      "type": "separator"
+    },
+
+    "== ADVANCED SETTINGS ==": {
+      "type": "separator"
+    },
+    "== Bramble Navigation Advanced ==": {
+      "type": "separator"
+    },
+    "Bramble Teleport Target Position": "-98.1, 398.6, 459.5",
+    "Bramble Teleport Target Rotation": "0.3, -0.7, 0.6, 0.0",
+    "Bramble Teleport Target Velocity": "-40.0, -50.0, -30.0",
+
+    "== Vessel Clip Advanced ==": {
+      "type": "separator"
+    },
+    "Vessel Clip Teleport Target Position": "180.76, 15.07, -25.04",
+
+    "== The Stranger Advanced ==": {
+      "type": "separator"
+    },
+    "Stranger Teleport Target Position": "49.54, -77.79, -293.29",
+    
+    "  ": {
+      "type": "separator"
+    },
+
+    "== CUSTOM STATES ==": {
       "type": "separator"
     },
     "Log Custom State Info": "Backslash,RightBracket",
