@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using Position = PacificEngine.OW_CommonResources.Game.Resource.Position;
 using System.Linq;
+using System.Globalization;
 
 namespace SpeedTools
 {
@@ -171,9 +172,9 @@ namespace SpeedTools
                 return;
             }
 
-            float x = float.Parse(parts[0].Trim());
-            float y = float.Parse(parts[1].Trim());
-            float z = float.Parse(parts[2].Trim());
+            float x = float.Parse(parts[0].Trim(), CultureInfo.InvariantCulture);
+            float y = float.Parse(parts[1].Trim(), CultureInfo.InvariantCulture);
+            float z = float.Parse(parts[2].Trim(), CultureInfo.InvariantCulture);
 
             teleportPosition = new Vector3(x, y, z);
         }
@@ -196,9 +197,9 @@ namespace SpeedTools
                 return;
             }
 
-            float x = float.Parse(parts[0].Trim());
-            float y = float.Parse(parts[1].Trim());
-            float z = float.Parse(parts[2].Trim());
+            float x = float.Parse(parts[0].Trim(), CultureInfo.InvariantCulture);
+            float y = float.Parse(parts[1].Trim(), CultureInfo.InvariantCulture);
+            float z = float.Parse(parts[2].Trim(), CultureInfo.InvariantCulture);
 
             teleportVelocity = new Vector3(x, y, z);
         }
@@ -224,10 +225,10 @@ namespace SpeedTools
                 return;
             }
 
-            float x = float.Parse(parts[0].Trim());
-            float y = float.Parse(parts[1].Trim());
-            float z = float.Parse(parts[2].Trim());
-            float w = float.Parse(parts[3].Trim());
+            float x = float.Parse(parts[0].Trim(), CultureInfo.InvariantCulture);
+            float y = float.Parse(parts[1].Trim(), CultureInfo.InvariantCulture);
+            float z = float.Parse(parts[2].Trim(), CultureInfo.InvariantCulture);
+            float w = float.Parse(parts[3].Trim(), CultureInfo.InvariantCulture);
 
             teleportRotation = new Quaternion(x, y, z, w);
         }
