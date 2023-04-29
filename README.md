@@ -75,7 +75,9 @@ Just like the previous state, the loop timer must be active for this practice st
 
 **Default key:** `\` + `A`
 
-BECOME FELDSPAR
+EXPERIMENTAL - BECOME FELDSPAR - This state is still under heavy development. Sometimes the state needs to be loaded multiple times to get it to work. Results not guaranteed.
+
+Warp into Dark Bramble just before entering the node with the three anglers. Option to disable death by eating so you can repeatedly reload instead of going back to the main menu.
 
 ### Vessel Activation
 
